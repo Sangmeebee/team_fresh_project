@@ -8,5 +8,5 @@ data class TokenEntity(
     @SerializedName("msg")
     val message: String,
     @SerializedName("data")
-    val token: String?,
+    val token: String,
 )

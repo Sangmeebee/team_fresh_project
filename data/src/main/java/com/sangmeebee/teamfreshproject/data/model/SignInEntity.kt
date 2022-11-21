@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SignInEntity(
     @SerializedName("userLoginId")
-    val userLoginId: String,
+    val id: String,
     @SerializedName("userLoginPassword")
-    val userLoginPassword: String,
+    val password: String,
 )

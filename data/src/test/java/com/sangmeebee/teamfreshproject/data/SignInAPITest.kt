@@ -44,7 +44,7 @@ class SignInAPITest {
         val response = MockResponse().setResponseCode(200).setBody(File("src/test/resources/sign_in_200.json").readText())
         mockWebServer.enqueue(response)
         // when
-        val actual = signInAPI.signIn(signInEntity = SignInEntity(userLoginId = "appdev", userLoginPassword = "Timf1234"))
+        val actual = signInAPI.signIn(signInEntity = SignInEntity(id = "appdev", password = "Timf1234"))
         // then
         val expected = TokenEntity(
             success = true,
@@ -62,7 +62,7 @@ class SignInAPITest {
         mockWebServer.enqueue(response)
         try {
             // when
-            signInAPI.signIn(signInEntity = SignInEntity(userLoginId = "noUser", userLoginPassword = "Timf1234"))
+            signInAPI.signIn(signInEntity = SignInEntity(id = "noUser", password = "Timf1234"))
         } catch (e: HttpException) {
             // then
             assertThat(e.code()).isEqualTo(400)
@@ -76,7 +76,7 @@ class SignInAPITest {
         mockWebServer.enqueue(response)
         try {
             // when
-            signInAPI.signIn(signInEntity = SignInEntity(userLoginId = "appdev", userLoginPassword = "wrongPW"))
+            signInAPI.signIn(signInEntity = SignInEntity(id = "appdev", password = "wrongPW"))
         } catch (e: HttpException) {
             // then
             assertThat(e.code()).isEqualTo(400)

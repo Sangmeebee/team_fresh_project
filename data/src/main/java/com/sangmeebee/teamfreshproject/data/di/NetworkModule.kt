@@ -26,7 +26,6 @@ internal object NetworkModule {
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
-
     @Singleton
     @Provides
     fun provideOkhttpClient(

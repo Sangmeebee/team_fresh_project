@@ -3,8 +3,7 @@ package com.sangmeebee.teamfreshproject.data.datasource
 import com.sangmeebee.teamfreshproject.data.di.IoDispatcher
 import com.sangmeebee.teamfreshproject.data.model.mapper.toData
 import com.sangmeebee.teamfreshproject.data.service.SignInAPI
-import com.sangmeebee.teamfreshproject.domain.datasource.SignInDatasource
-import com.sangmeebee.teamfreshproject.domain.model.SignIn
+import com.sangmeebee.teamfreshproject.domain.model.SignInInfo
 import com.sangmeebee.teamfreshproject.domain.model.Token
 import com.sangmeebee.teamfreshproject.domain.util.ID_EXCEPTION_CODE
 import com.sangmeebee.teamfreshproject.domain.util.IllegalIdException
@@ -19,9 +18,9 @@ internal class SignInDatasourceImpl @Inject constructor(
     private val signInAPI: SignInAPI,
     @IoDispatcher private val dispatcher: CoroutineDispatcher,
 ) : SignInDatasource {
-    override suspend fun signIn(signIn: SignIn): Result<Token> =
+    override suspend fun signIn(signInInfo: SignInInfo): Result<Token> =
         withContext(dispatcher) {
-            val response = signInAPI.signIn(signIn.toData())
+            val response = signInAPI.signIn(signInInfo.toData())
             when (response.code) {
                 SUCCESS_CODE -> runCatching {
                     requireNotNull(response.token)

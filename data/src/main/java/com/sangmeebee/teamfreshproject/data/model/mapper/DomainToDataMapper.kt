@@ -1,9 +1,9 @@
 package com.sangmeebee.teamfreshproject.data.model.mapper
 
-import com.sangmeebee.teamfreshproject.data.model.SignInEntity
-import com.sangmeebee.teamfreshproject.domain.model.SignIn
+import com.sangmeebee.teamfreshproject.data.model.SignInInfoEntity
+import com.sangmeebee.teamfreshproject.domain.model.SignInInfo
 
-fun SignIn.toData(): SignInEntity = SignInEntity(
+fun SignInInfo.toData(): SignInInfoEntity = SignInInfoEntity(
     id = id,
     password = password
 )

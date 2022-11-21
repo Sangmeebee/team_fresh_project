@@ -1,7 +1,7 @@
 package com.sangmeebee.teamfreshproject.data.service
 
 import com.google.common.truth.Truth.assertThat
-import com.sangmeebee.teamfreshproject.data.model.SignInEntity
+import com.sangmeebee.teamfreshproject.data.model.SignInInfoEntity
 import com.sangmeebee.teamfreshproject.data.model.TokenEntity
 import com.sangmeebee.teamfreshproject.domain.util.ID_EXCEPTION_CODE
 import com.sangmeebee.teamfreshproject.domain.util.PASSWORD_EXCEPTION_CODE
@@ -44,7 +44,7 @@ class SignInAPITest {
         val response = MockResponse().setResponseCode(200).setBody(File("src/test/resources/sign_in_200.json").readText())
         mockWebServer.enqueue(response)
         // when
-        val actual = signInAPI.signIn(signInEntity = SignInEntity(id = "appdev", password = "Timf1234"))
+        val actual = signInAPI.signIn(signInInfoEntity = SignInInfoEntity(id = "appdev", password = "Timf1234"))
         // then
         val expected = TokenEntity(
             success = true,
@@ -62,7 +62,7 @@ class SignInAPITest {
         val expected = ID_EXCEPTION_CODE
         mockWebServer.enqueue(response)
         // when
-        val actual = signInAPI.signIn(signInEntity = SignInEntity(id = "noUser", password = "Timf1234"))
+        val actual = signInAPI.signIn(signInInfoEntity = SignInInfoEntity(id = "noUser", password = "Timf1234"))
         // then
         assertThat(actual.code).isEqualTo(expected)
     }
@@ -74,7 +74,7 @@ class SignInAPITest {
         val expected = PASSWORD_EXCEPTION_CODE
         mockWebServer.enqueue(response)
         // when
-        val actual = signInAPI.signIn(signInEntity = SignInEntity(id = "appdev", password = "WrongPw"))
+        val actual = signInAPI.signIn(signInInfoEntity = SignInInfoEntity(id = "appdev", password = "WrongPw"))
         // then
         assertThat(actual.code).isEqualTo(expected)
     }

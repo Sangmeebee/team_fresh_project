@@ -1,7 +1,7 @@
 package com.sangmeebee.teamfreshproject.data.di
 
 import com.sangmeebee.teamfreshproject.data.datasource.SignInDatasourceImpl
-import com.sangmeebee.teamfreshproject.domain.datasource.SignInDatasource
+import com.sangmeebee.teamfreshproject.data.datasource.SignInDatasource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -1,6 +1,6 @@
 package com.sangmeebee.teamfreshproject.domain.model
 
-data class SignIn(
+data class SignInInfo(
     val id: String,
     val password: String,
 )

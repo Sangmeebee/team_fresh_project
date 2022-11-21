@@ -1,4 +1,4 @@
-# team_fresh_project  
+# team_fresh_project
 
 ## 요구사항
 - 로그인 기능
@@ -13,16 +13,16 @@
 ## 구현 계획
 1. android clean architecture에 따라 모듈 분리[]
 2. 각 모듈 gradle 세팅[]
-3. 로그인 구현
-3-1. 로그인 data layer test code 작성, data layer 구현[]
-3-2. 로그인 domain layer test code 작성, domain layer 구현[]
-3-3. 로그인 presentation layer viewmodel test code 작성, viewmodel 구현[]
-3-4. 로그인 ui 구현[]
-4. 게시판 구현
-4-1. 게시판 data layer test code 작성, data layer 구현[]
-4-2. 게시판 domain layer test code 작성, domain layer 구현[]
-4-3. 게시판 presentation layer viewmodel test code 작성, viewmodel 구현[]
-4-4. 게시판 ui 구현[]
+3. 로그인 구현  
+   3-1. 로그인 data layer test code 작성, data layer 구현[]  
+   3-2. 로그인 domain layer test code 작성, domain layer 구현[]  
+   3-3. 로그인 presentation layer viewmodel test code 작성, viewmodel 구현[]  
+   3-4. 로그인 ui 구현[]
+4. 게시판 구현  
+   4-1. 게시판 data layer test code 작성, data layer 구현[]  
+   4-2. 게시판 domain layer test code 작성, domain layer 구현[]  
+   4-3. 게시판 presentation layer viewmodel test code 작성, viewmodel 구현[]  
+   4-4. 게시판 ui 구현[]
 
 ## 🏗 Project Structure
 ![teamfresh_architecture](https://user-images.githubusercontent.com/48168117/203066088-f818786e-a702-41ae-9689-0a6b12d0c05d.png)

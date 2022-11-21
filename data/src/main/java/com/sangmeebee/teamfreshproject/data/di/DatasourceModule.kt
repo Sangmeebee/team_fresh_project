@@ -1,7 +1,7 @@
 package com.sangmeebee.teamfreshproject.data.di
 
-import com.sangmeebee.teamfreshproject.data.datasource.SignInDatasourceImpl
-import com.sangmeebee.teamfreshproject.data.datasource.SignInDatasource
+import com.sangmeebee.teamfreshproject.data.datasource.SignInRemoteDatasource
+import com.sangmeebee.teamfreshproject.data.datasource.SignInRemoteDatasourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,5 +14,5 @@ internal abstract class DatasourceModule {
 
     @Singleton
     @Binds
-    abstract fun bindSignInDatasource(impl: SignInDatasourceImpl): SignInDatasource
+    abstract fun bindSignInRemoteDatasource(impl: SignInRemoteDatasourceImpl): SignInRemoteDatasource
 }

@@ -31,8 +31,8 @@ android {
 
 dependencies {
 
+    implementation(project(":domain"))
     implementation(CoroutineConfig.CORE)
-
     implementation(PagingConfig.PAGING_COMMON)
 
     NetworkConfig.run {

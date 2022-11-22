@@ -6,4 +6,11 @@
     <string name="menu_calculate">정산</string>
     <string name="menu_community">게시판</string>
     <string name="menu_review">리뷰</string>
+
+    <string name="sign_in_id">아이디</string>
+    <string name="sign_in_password">비밀번호</string>
+    <string name="sign_in_sign_in">로그인</string>
+    <string name="sign_in_find_id">아이디 찾기</string>
+    <string name="sign_in_find_password">비밀번호 찾기</string>
+    <string name="sign_in_sign_up">회원가입</string>
 </resources>

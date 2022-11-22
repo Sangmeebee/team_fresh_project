@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.TeamFreshProject" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#FF5722</item>
+        <item name="colorPrimary">@color/primary_500</item>
         <item name="colorPrimaryVariant">#939393</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

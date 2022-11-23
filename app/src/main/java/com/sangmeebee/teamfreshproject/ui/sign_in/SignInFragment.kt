@@ -51,19 +51,19 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
         }
 
         binding.tvFindId.setOnClickListener {
-            showToast(resources.getString(R.string.sign_in_click_find_id))
+            showToast(resources.getString(R.string.sign_in_find_id))
         }
 
         binding.tvFindPw.setOnClickListener {
-            showToast(resources.getString(R.string.sign_in_click_find_password))
+            showToast(resources.getString(R.string.sign_in_find_password))
         }
 
         binding.tvSignUp.setOnClickListener {
-            showToast(resources.getString(R.string.sign_in_click_sign_up))
+            showToast(resources.getString(R.string.sign_in_sign_up))
         }
 
         binding.ivKakaoLogin.setOnClickListener {
-            showToast(resources.getString(R.string.sign_in_click_sign_in_kakao))
+            showToast(resources.getString(R.string.sign_in_sign_in_kakao))
         }
     }
 

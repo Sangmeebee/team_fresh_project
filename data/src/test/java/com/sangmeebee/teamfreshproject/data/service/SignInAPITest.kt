@@ -1,6 +1,7 @@
 package com.sangmeebee.teamfreshproject.data.service
 
 import com.google.common.truth.Truth.assertThat
+import com.google.gson.Gson
 import com.sangmeebee.teamfreshproject.data.model.SignInInfoEntity
 import com.sangmeebee.teamfreshproject.data.model.TokenEntity
 import com.sangmeebee.teamfreshproject.domain.util.ID_EXCEPTION_CODE
@@ -52,17 +53,19 @@ class SignInAPITest {
             message = "성공하였습니다.",
             token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNjgiLCJ1c2VyTG9naW5JZCI6ImFwcGRldiIsInVzZXJObSI6IuyVse2FjOyKpO2KuOqzhOyglSIsInVzZXJTZXEiOjI2OCwidXNlck5jbm0iOiLslbHthYzsiqTtirjqs4TsoJUiLCJyb2xlcyI6W3siYXV0aG9yaXR5IjoiREVGQVVMVCJ9XSwiaWF0IjoxNjY5MDM5MDQ3LCJleHAiOjkyMjMzNzIwMzY4NTQ3NzV9.qXYuNk-7KdMkOFcbWfnUT_Wo4UuzC08WOY6su4I-ysQ"
         )
-        assertThat(actual).isEqualTo(expected)
+        assertThat(actual.body()).isEqualTo(expected)
     }
 
     @Test
     fun `존재하지 않는 회원이면 로그인이 실패한다`() = runTest {
         // given
-        val response = MockResponse().setBody(File("src/test/resources/sign_in_id_error.json").readText())
+        val response = MockResponse().setResponseCode(400).setBody(File("src/test/resources/sign_in_id_error.json").readText())
         val expected = ID_EXCEPTION_CODE
         mockWebServer.enqueue(response)
         // when
-        val actual = signInAPI.signIn(signInInfoEntity = SignInInfoEntity(id = "noUser", password = "Timf1234"))
+        val errorResponse = signInAPI.signIn(signInInfoEntity = SignInInfoEntity(id = "noUser", password = "Timf1234"))
+        val errorBody = errorResponse.errorBody()?.string()
+        val actual = Gson().fromJson(errorBody, TokenEntity::class.java)
         // then
         assertThat(actual.code).isEqualTo(expected)
     }
@@ -70,11 +73,13 @@ class SignInAPITest {
     @Test
     fun `비밀번호가 틀리면 로그인이 실패한다`() = runTest {
         // given
-        val response = MockResponse().setBody(File("src/test/resources/sign_in_password_error.json").readText())
+        val response = MockResponse().setResponseCode(400).setBody(File("src/test/resources/sign_in_password_error.json").readText())
         val expected = PASSWORD_EXCEPTION_CODE
         mockWebServer.enqueue(response)
         // when
-        val actual = signInAPI.signIn(signInInfoEntity = SignInInfoEntity(id = "appdev", password = "WrongPw"))
+        val errorResponse = signInAPI.signIn(signInInfoEntity = SignInInfoEntity(id = "appdev", password = "WrongPw"))
+        val errorBody = errorResponse.errorBody()?.string()
+        val actual = Gson().fromJson(errorBody, TokenEntity::class.java)
         // then
         assertThat(actual.code).isEqualTo(expected)
     }

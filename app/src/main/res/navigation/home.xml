@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home"
-    app:startDestination="@id/emptyFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/emptyFragment"
+        android:id="@+id/homeFragment"
         android:name="com.sangmeebee.teamfreshproject.ui.common.EmptyFragment"
         android:label="EmptyFragment"
         tools:layout="@layout/fragment_empty">

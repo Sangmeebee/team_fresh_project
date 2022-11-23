@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.sangmeebee.teamfreshproject.ui.common.EmptyFragment"
-        android:label="EmptyFragment"
+        android:name="com.sangmeebee.teamfreshproject.ui.home.HomeFragment"
+        android:label="HomeFragment"
         tools:layout="@layout/fragment_empty">
         <argument
             android:name="ShowBottomNav"

@@ -2,9 +2,11 @@ package com.sangmeebee.teamfreshproject.ui.sign_in
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.sangmeebee.teamfreshproject.R
+import com.sangmeebee.teamfreshproject.const.KEY_BUNDLE_SIGN_IN
 import com.sangmeebee.teamfreshproject.databinding.FragmentSignInBinding
 import com.sangmeebee.teamfreshproject.domain.util.HttpConnectionException
 import com.sangmeebee.teamfreshproject.domain.util.IllegalIdException
@@ -98,7 +100,8 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
     private fun observeIsSignIn() = repeatOnStarted {
         signInViewModel.uiState.map { it.isSignIn }.distinctUntilChanged().collectLatest { isSignIn ->
             if (isSignIn) {
-                findNavController().navigate(R.id.action_signInFragment_to_home)
+                val bundle = bundleOf(KEY_BUNDLE_SIGN_IN to true)
+                findNavController().navigate(R.id.action_init, bundle)
             }
         }
     }

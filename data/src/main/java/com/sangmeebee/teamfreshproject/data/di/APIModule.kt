@@ -16,5 +16,4 @@ internal object APIModule {
     @Provides
     internal fun provideSignInAPI(retrofit: Retrofit): SignInAPI =
         retrofit.create(SignInAPI::class.java)
-
 }

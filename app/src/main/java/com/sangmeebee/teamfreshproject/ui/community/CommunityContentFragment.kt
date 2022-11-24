@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import com.sangmeebee.teamfreshproject.databinding.FragmentCommunityContentBinding
 import com.sangmeebee.teamfreshproject.ui.base.BaseFragment
 import com.sangmeebee.teamfreshproject.ui.community.adapter.CommunityContentAdapter
+import com.sangmeebee.teamfreshproject.util.DividerDecoration
 import com.sangmeebee.teamfreshproject.util.repeatOnStarted
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -24,7 +25,10 @@ class CommunityContentFragment : BaseFragment<FragmentCommunityContentBinding>(F
     }
 
     private fun setRecyclerView() {
-        binding.rvBoard.adapter = communityContentAdapter
+        binding.rvBoard.apply {
+            adapter = communityContentAdapter
+            addItemDecoration(DividerDecoration(1))
+        }
     }
 
     private fun observeBoards() = repeatOnStarted {

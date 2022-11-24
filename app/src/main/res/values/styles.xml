@@ -2,7 +2,7 @@
 <resources>
 
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@drawable/bg_secondary200</item>
+        <item name="boxStrokeColor">@drawable/selector_secondary200</item>
         <item name="colorControlNormal">@color/secondary_200</item>
         <item name="android:textColorHint">@color/secondary_500</item>
         <item name="boxBackgroundColor">@color/secondary_100</item>
@@ -10,5 +10,11 @@
         <item name="boxCornerRadiusBottomStart">10dp</item>
         <item name="boxCornerRadiusTopEnd">10dp</item>
         <item name="boxCornerRadiusTopStart">10dp</item>
+    </style>
+
+    <style name="CommunitySubContentStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/secondary_500</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:maxLines">1</item>
     </style>
 </resources>

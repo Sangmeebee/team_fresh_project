@@ -21,4 +21,8 @@
     <string name="sign_in_password_empty">비밀번호를 입력해주세요.</string>
     <string name="sign_in_password_error">비밀번호가 정확하지 않습니다.</string>
     <string name="sign_in_common_error">로그인에 실패했습니다. 다시한번 시도해주세요.</string>
+
+    <string name="community_commnet">댓글</string>
+    <string name="community_view">조회%d</string>
+    <string name="community_no_nickname">(알 수 없음)</string>
 </resources>

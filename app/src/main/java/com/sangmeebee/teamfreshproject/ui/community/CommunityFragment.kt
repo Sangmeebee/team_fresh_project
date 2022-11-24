@@ -50,6 +50,9 @@ class CommunityFragment : BaseFragment<FragmentCommunityBinding>(FragmentCommuni
     }
 
     private fun setViewPager() {
-        binding.viewPager.adapter = communityAdapter
+        binding.viewPager.apply {
+            adapter = communityAdapter
+            offscreenPageLimit = 1
+        }
     }
 }

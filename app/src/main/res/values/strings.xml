@@ -9,6 +9,7 @@
     <string name="menu_profile">프로필</string>
 
     <string name="common_network_error">네트워크 상태를 확인해주세요</string>
+    <string name="common_unknown_error">데이터를 로드하지 못했습니다\n재시도 후 같은 문제가 반복되면\n 관리자에게 문의해주세요</string>
     <string name="common_reload">다시 시도하려면 누르세요</string>
 
     <string name="sign_in_id">아이디</string>

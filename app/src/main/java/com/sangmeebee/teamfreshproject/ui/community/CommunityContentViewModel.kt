@@ -16,6 +16,8 @@ import com.sangmeebee.teamfreshproject.ui.community.CommunityContentFragment.Com
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -36,4 +38,11 @@ class CommunityContentViewModel @Inject constructor(
                 pagingData.map { board -> board.toPresentation() }
             }
         }.cachedIn(viewModelScope)
+
+    private val _errorState = MutableStateFlow<String?>(null)
+    val errorState = _errorState.asStateFlow()
+
+    fun fetchErrorState(error: String?) {
+        _errorState.value = error
+    }
 }

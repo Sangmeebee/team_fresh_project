@@ -4,7 +4,6 @@ import com.sangmeebee.teamfreshproject.data.model.BoardRequestEntity
 import com.sangmeebee.teamfreshproject.data.model.SearchBoardRequestEntity
 import com.sangmeebee.teamfreshproject.data.model.SignInRequestEntity
 import com.sangmeebee.teamfreshproject.domain.model.BoardRequest
-import com.sangmeebee.teamfreshproject.domain.model.SearchBoardRequest
 import com.sangmeebee.teamfreshproject.domain.model.SignInRequest
 
 internal fun SignInRequest.toData(): SignInRequestEntity = SignInRequestEntity(
@@ -13,17 +12,13 @@ internal fun SignInRequest.toData(): SignInRequestEntity = SignInRequestEntity(
 )
 
 internal fun BoardRequest.toData(): BoardRequestEntity = BoardRequestEntity(
-    length = length,
-    searchBoard = searchBoard.toData(),
-    start = start
-)
-
-internal fun SearchBoardRequest.toData(): SearchBoardRequestEntity = SearchBoardRequestEntity(
-    content = content,
-    subject = subject,
-    type = type,
-    createStart = createStart,
-    createEnd = createEnd,
-    writerId = writerId,
-    writerNickname = writerNickname
+    searchBoard = SearchBoardRequestEntity(
+        content = content,
+        subject = subject,
+        type = type,
+        createStart = createStart,
+        createEnd = createEnd,
+        writerId = writerId,
+        writerNickname = writerNickname
+    )
 )

@@ -1,12 +1,6 @@
 package com.sangmeebee.teamfreshproject.domain.model
 
 data class BoardRequest(
-    val length: Int,
-    val searchBoard: SearchBoardRequest,
-    val start: Int,
-)
-
-data class SearchBoardRequest(
     val content: String,
     val subject: String? = null,
     val type: String? = null,

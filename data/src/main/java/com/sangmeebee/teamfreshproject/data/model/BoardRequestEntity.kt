@@ -1,22 +1,16 @@
 package com.sangmeebee.teamfreshproject.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.sangmeebee.teamfreshproject.data.datasource.BoardPagingSource.Companion.PAGE_DISPLAY_SIZE
 import com.sangmeebee.teamfreshproject.data.model.mapper.DataToDomainMapper
 import com.sangmeebee.teamfreshproject.domain.model.BoardRequest
-import com.sangmeebee.teamfreshproject.domain.model.SearchBoardRequest
 
 data class BoardRequestEntity(
-    val length: Int,
+    val length: Int = PAGE_DISPLAY_SIZE,
     @SerializedName("searchObj")
     val searchBoard: SearchBoardRequestEntity,
-    val start: Int,
-) : DataToDomainMapper<BoardRequest> {
-    override fun toDomain(): BoardRequest = BoardRequest(
-        length = length,
-        searchBoard = searchBoard.toDomain(),
-        start = start
-    )
-}
+    val start: Int = 0,
+)
 
 data class SearchBoardRequestEntity(
     @SerializedName("boardCn")
@@ -33,8 +27,8 @@ data class SearchBoardRequestEntity(
     val writerId: String? = null,
     @SerializedName("wrterNcnm")
     val writerNickname: String? = null,
-) : DataToDomainMapper<SearchBoardRequest> {
-    override fun toDomain(): SearchBoardRequest = SearchBoardRequest(
+) : DataToDomainMapper<BoardRequest> {
+    override fun toDomain(): BoardRequest = BoardRequest(
         content = content,
         subject = subject,
         type = type,

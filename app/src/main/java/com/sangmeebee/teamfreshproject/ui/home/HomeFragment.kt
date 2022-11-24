@@ -3,9 +3,9 @@ package com.sangmeebee.teamfreshproject.ui.home
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import com.sangmeebee.teamfreshproject.R
-import com.sangmeebee.teamfreshproject.const.KEY_BUNDLE_SIGN_IN
 import com.sangmeebee.teamfreshproject.databinding.FragmentEmptyBinding
 import com.sangmeebee.teamfreshproject.ui.base.BaseFragment
+import com.sangmeebee.teamfreshproject.ui.sign_in.SignInFragment.Companion.KEY_BUNDLE_SIGN_IN
 
 class HomeFragment : BaseFragment<FragmentEmptyBinding>(FragmentEmptyBinding::inflate) {
     override fun onCreate(savedInstanceState: Bundle?) {

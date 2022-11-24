@@ -6,7 +6,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.sangmeebee.teamfreshproject.R
-import com.sangmeebee.teamfreshproject.const.KEY_BUNDLE_SIGN_IN
 import com.sangmeebee.teamfreshproject.databinding.FragmentSignInBinding
 import com.sangmeebee.teamfreshproject.domain.util.HttpConnectionException
 import com.sangmeebee.teamfreshproject.domain.util.IllegalIdException
@@ -104,5 +103,9 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
                 findNavController().navigate(R.id.action_init, bundle)
             }
         }
+    }
+
+    companion object {
+        const val KEY_BUNDLE_SIGN_IN = "isSignIn"
     }
 }

@@ -16,9 +16,14 @@ class CommunityFragment : BaseFragment<FragmentCommunityBinding>(FragmentCommuni
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpView()
+    }
+
+    private fun setUpView() {
         setToolbar()
         setViewPager()
         setTabLayout()
+        writeButtonClickListener()
     }
 
     private fun setToolbar() {
@@ -47,6 +52,12 @@ class CommunityFragment : BaseFragment<FragmentCommunityBinding>(FragmentCommuni
         TabLayoutMediator(binding.tab, binding.viewPager) { tab, position ->
             tab.text = tabSubjects[position]
         }.attach()
+    }
+
+    private fun writeButtonClickListener() {
+        binding.tvWrite.setOnClickListener {
+            showToast(resources.getString(R.string.community_write))
+        }
     }
 
     private fun setViewPager() {

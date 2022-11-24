@@ -8,7 +8,8 @@
     <string name="menu_review">리뷰</string>
     <string name="menu_profile">프로필</string>
 
-    <string name="common_network_error">네트워크 상태를 확인해주세요.</string>
+    <string name="common_network_error">네트워크 상태를 확인해주세요</string>
+    <string name="common_reload">다시 시도하려면 누르세요</string>
 
     <string name="sign_in_id">아이디</string>
     <string name="sign_in_password">비밀번호</string>

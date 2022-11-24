@@ -1,7 +1,7 @@
 package com.sangmeebee.teamfreshproject.data.repository
 
 import com.sangmeebee.teamfreshproject.data.datasource.SignInRemoteDatasource
-import com.sangmeebee.teamfreshproject.domain.model.SignInInfo
+import com.sangmeebee.teamfreshproject.domain.model.SignInRequest
 import com.sangmeebee.teamfreshproject.domain.repository.SignInRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -16,11 +16,11 @@ class SignInRepositoryImplTest {
         // given
         val signInRemoteDatasource: SignInRemoteDatasource = mockk()
         val signInRepository: SignInRepository = SignInRepositoryImpl(signInRemoteDatasource)
-        val signInInfo = SignInInfo(id = "appdev", password = "Timf1234")
-        coEvery { signInRemoteDatasource.signIn(signInInfo) } returns Result.success(mockk())
+        val signInRequest = SignInRequest(id = "appdev", password = "Timf1234")
+        coEvery { signInRemoteDatasource.signIn(signInRequest) } returns Result.success(mockk())
         // when
-        signInRepository.signIn(signInInfo)
+        signInRepository.signIn(signInRequest)
         // then
-        coVerify { signInRemoteDatasource.signIn(signInInfo) }
+        coVerify { signInRemoteDatasource.signIn(signInRequest) }
     }
 }

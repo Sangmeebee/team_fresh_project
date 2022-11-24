@@ -2,12 +2,12 @@ package com.sangmeebee.teamfreshproject.model.mapper
 
 import com.sangmeebee.teamfreshproject.domain.model.BoardRequest
 import com.sangmeebee.teamfreshproject.domain.model.SearchBoardRequest
-import com.sangmeebee.teamfreshproject.domain.model.SignInInfo
+import com.sangmeebee.teamfreshproject.domain.model.SignInRequest
 import com.sangmeebee.teamfreshproject.model.BoardRequestModel
 import com.sangmeebee.teamfreshproject.model.SearchBoardRequestModel
 import com.sangmeebee.teamfreshproject.model.SignInInfoModel
 
-internal fun SignInInfoModel.toDomain(): SignInInfo = SignInInfo(
+internal fun SignInInfoModel.toDomain(): SignInRequest = SignInRequest(
     id = id,
     password = password
 )

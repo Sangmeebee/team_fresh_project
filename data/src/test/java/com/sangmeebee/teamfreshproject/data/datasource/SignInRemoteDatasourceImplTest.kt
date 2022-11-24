@@ -58,7 +58,7 @@ class SignInRemoteDatasourceImplTest {
         val response = MockResponse().setResponseCode(200).setBody(File("src/test/resources/sign_in_200.json").readText())
         mockWebServer.enqueue(response)
         // when
-        val actual = signInRemoteDatasource.signIn(signInInfo = signInRequestEntity.toDomain())
+        val actual = signInRemoteDatasource.signIn(signInRequest = signInRequestEntity.toDomain())
         // then
         assertThat(actual.isSuccess).isTrue()
         actual.onSuccess { assertThat(it).isEqualTo(tokenResponseEntity.toDomain()) }
@@ -71,7 +71,7 @@ class SignInRemoteDatasourceImplTest {
         val response = MockResponse().setResponseCode(400).setBody(File("src/test/resources/sign_in_id_error.json").readText())
         mockWebServer.enqueue(response)
         // when
-        val actual = signInRemoteDatasource.signIn(signInInfo = signInRequestEntity.toDomain())
+        val actual = signInRemoteDatasource.signIn(signInRequest = signInRequestEntity.toDomain())
         // then
         assertThat(actual.isFailure).isTrue()
         actual.onFailure { assertThat(it).isInstanceOf(IllegalIdException::class.java) }
@@ -84,7 +84,7 @@ class SignInRemoteDatasourceImplTest {
         val response = MockResponse().setResponseCode(400).setBody(File("src/test/resources/sign_in_password_error.json").readText())
         mockWebServer.enqueue(response)
         // when
-        val actual = signInRemoteDatasource.signIn(signInInfo = signInRequestEntity.toDomain())
+        val actual = signInRemoteDatasource.signIn(signInRequest = signInRequestEntity.toDomain())
         // then
         assertThat(actual.isFailure).isTrue()
         actual.onFailure { assertThat(it).isInstanceOf(IllegalPasswordException::class.java) }

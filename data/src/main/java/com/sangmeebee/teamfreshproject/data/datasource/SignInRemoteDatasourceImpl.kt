@@ -4,7 +4,7 @@ import com.sangmeebee.teamfreshproject.data.di.IoDispatcher
 import com.sangmeebee.teamfreshproject.data.model.mapper.toData
 import com.sangmeebee.teamfreshproject.data.service.SignInAPI
 import com.sangmeebee.teamfreshproject.data.util.getResult
-import com.sangmeebee.teamfreshproject.domain.model.SignInInfo
+import com.sangmeebee.teamfreshproject.domain.model.SignInRequest
 import com.sangmeebee.teamfreshproject.domain.model.Token
 import com.sangmeebee.teamfreshproject.domain.util.HttpConnectionException
 import com.sangmeebee.teamfreshproject.domain.util.ID_EXCEPTION_CODE
@@ -20,9 +20,9 @@ internal class SignInRemoteDatasourceImpl @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher,
 ) : SignInRemoteDatasource {
 
-    override suspend fun signIn(signInInfo: SignInInfo): Result<Token> = try {
+    override suspend fun signIn(signInRequest: SignInRequest): Result<Token> = try {
         withContext(dispatcher) {
-            val response = signInAPI.signIn(signInInfo.toData())
+            val response = signInAPI.signIn(signInRequest.toData())
             response.getResult { code ->
                 when (code) {
                     ID_EXCEPTION_CODE -> IllegalIdException()

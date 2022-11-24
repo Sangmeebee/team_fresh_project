@@ -1,6 +1,6 @@
 package com.sangmeebee.teamfreshproject.domain.usecase
 
-import com.sangmeebee.teamfreshproject.domain.model.SignInInfo
+import com.sangmeebee.teamfreshproject.domain.model.SignInRequest
 import com.sangmeebee.teamfreshproject.domain.repository.SignInRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -15,11 +15,11 @@ class SignInUsecaseTest {
         // given
         val signInRepository: SignInRepository = mockk()
         val signInUsecase = SignInUsecase(signInRepository)
-        val signInInfo = SignInInfo(id = "appdev", password = "Timf1234")
-        coEvery { signInRepository.signIn(signInInfo) } returns Result.success(mockk())
+        val signInRequest = SignInRequest(id = "appdev", password = "Timf1234")
+        coEvery { signInRepository.signIn(signInRequest) } returns Result.success(mockk())
         // when
-        signInUsecase(signInInfo)
+        signInUsecase(signInRequest)
         // then
-        coVerify { signInRepository.signIn(signInInfo) }
+        coVerify { signInRepository.signIn(signInRequest) }
     }
 }

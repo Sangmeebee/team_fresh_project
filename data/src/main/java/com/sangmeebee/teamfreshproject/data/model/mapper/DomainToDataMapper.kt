@@ -5,9 +5,9 @@ import com.sangmeebee.teamfreshproject.data.model.SearchBoardRequestEntity
 import com.sangmeebee.teamfreshproject.data.model.SignInRequestEntity
 import com.sangmeebee.teamfreshproject.domain.model.BoardRequest
 import com.sangmeebee.teamfreshproject.domain.model.SearchBoardRequest
-import com.sangmeebee.teamfreshproject.domain.model.SignInInfo
+import com.sangmeebee.teamfreshproject.domain.model.SignInRequest
 
-internal fun SignInInfo.toData(): SignInRequestEntity = SignInRequestEntity(
+internal fun SignInRequest.toData(): SignInRequestEntity = SignInRequestEntity(
     id = id,
     password = password
 )

@@ -2,8 +2,8 @@ package com.sangmeebee.teamfreshproject.data.service
 
 import com.google.common.truth.Truth.assertThat
 import com.google.gson.Gson
-import com.sangmeebee.teamfreshproject.data.model.SignInInfoEntity
-import com.sangmeebee.teamfreshproject.data.model.TokenEntity
+import com.sangmeebee.teamfreshproject.data.model.SignInRequestEntity
+import com.sangmeebee.teamfreshproject.data.model.TokenResponseEntity
 import com.sangmeebee.teamfreshproject.domain.util.ID_EXCEPTION_CODE
 import com.sangmeebee.teamfreshproject.domain.util.PASSWORD_EXCEPTION_CODE
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -45,9 +45,9 @@ class SignInAPITest {
         val response = MockResponse().setResponseCode(200).setBody(File("src/test/resources/sign_in_200.json").readText())
         mockWebServer.enqueue(response)
         // when
-        val actual = signInAPI.signIn(signInInfoEntity = SignInInfoEntity(id = "appdev", password = "Timf1234"))
+        val actual = signInAPI.signIn(signInRequestEntity = SignInRequestEntity(id = "appdev", password = "Timf1234"))
         // then
-        val expected = TokenEntity(
+        val expected = TokenResponseEntity(
             success = true,
             code = 0,
             message = "성공하였습니다.",
@@ -63,9 +63,9 @@ class SignInAPITest {
         val expected = ID_EXCEPTION_CODE
         mockWebServer.enqueue(response)
         // when
-        val errorResponse = signInAPI.signIn(signInInfoEntity = SignInInfoEntity(id = "noUser", password = "Timf1234"))
+        val errorResponse = signInAPI.signIn(signInRequestEntity = SignInRequestEntity(id = "noUser", password = "Timf1234"))
         val errorBody = errorResponse.errorBody()?.string()
-        val actual = Gson().fromJson(errorBody, TokenEntity::class.java)
+        val actual = Gson().fromJson(errorBody, TokenResponseEntity::class.java)
         // then
         assertThat(actual.code).isEqualTo(expected)
     }
@@ -77,9 +77,9 @@ class SignInAPITest {
         val expected = PASSWORD_EXCEPTION_CODE
         mockWebServer.enqueue(response)
         // when
-        val errorResponse = signInAPI.signIn(signInInfoEntity = SignInInfoEntity(id = "appdev", password = "WrongPw"))
+        val errorResponse = signInAPI.signIn(signInRequestEntity = SignInRequestEntity(id = "appdev", password = "WrongPw"))
         val errorBody = errorResponse.errorBody()?.string()
-        val actual = Gson().fromJson(errorBody, TokenEntity::class.java)
+        val actual = Gson().fromJson(errorBody, TokenResponseEntity::class.java)
         // then
         assertThat(actual.code).isEqualTo(expected)
     }

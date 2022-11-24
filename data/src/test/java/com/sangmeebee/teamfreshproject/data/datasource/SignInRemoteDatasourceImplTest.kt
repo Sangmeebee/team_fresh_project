@@ -1,8 +1,8 @@
 package com.sangmeebee.teamfreshproject.data.datasource
 
 import com.google.common.truth.Truth.assertThat
-import com.sangmeebee.teamfreshproject.data.model.SignInInfoEntity
-import com.sangmeebee.teamfreshproject.data.model.TokenEntity
+import com.sangmeebee.teamfreshproject.data.model.SignInRequestEntity
+import com.sangmeebee.teamfreshproject.data.model.TokenResponseEntity
 import com.sangmeebee.teamfreshproject.data.service.SignInAPI
 import com.sangmeebee.teamfreshproject.domain.util.IllegalIdException
 import com.sangmeebee.teamfreshproject.domain.util.IllegalPasswordException
@@ -48,8 +48,8 @@ class SignInRemoteDatasourceImplTest {
     @Test
     fun `회원가입을 성공하면 토큰을 반환한다`() = runTest {
         // given
-        val signInInfoEntity = SignInInfoEntity(id = "appdev", password = "Timf1234")
-        val tokenEntity = TokenEntity(
+        val signInRequestEntity = SignInRequestEntity(id = "appdev", password = "Timf1234")
+        val tokenResponseEntity = TokenResponseEntity(
             success = true,
             code = 0,
             message = "성공하였습니다.",
@@ -58,20 +58,20 @@ class SignInRemoteDatasourceImplTest {
         val response = MockResponse().setResponseCode(200).setBody(File("src/test/resources/sign_in_200.json").readText())
         mockWebServer.enqueue(response)
         // when
-        val actual = signInRemoteDatasource.signIn(signInInfo = signInInfoEntity.toDomain())
+        val actual = signInRemoteDatasource.signIn(signInInfo = signInRequestEntity.toDomain())
         // then
         assertThat(actual.isSuccess).isTrue()
-        actual.onSuccess { assertThat(it).isEqualTo(tokenEntity.toDomain()) }
+        actual.onSuccess { assertThat(it).isEqualTo(tokenResponseEntity.toDomain()) }
     }
 
     @Test
     fun `아이디를 잘못 입력하면 해당 예외가 발생한다`() = runTest {
         // given
-        val signInInfoEntity = SignInInfoEntity(id = "WrongUser", password = "Timf1234")
+        val signInRequestEntity = SignInRequestEntity(id = "WrongUser", password = "Timf1234")
         val response = MockResponse().setResponseCode(400).setBody(File("src/test/resources/sign_in_id_error.json").readText())
         mockWebServer.enqueue(response)
         // when
-        val actual = signInRemoteDatasource.signIn(signInInfo = signInInfoEntity.toDomain())
+        val actual = signInRemoteDatasource.signIn(signInInfo = signInRequestEntity.toDomain())
         // then
         assertThat(actual.isFailure).isTrue()
         actual.onFailure { assertThat(it).isInstanceOf(IllegalIdException::class.java) }
@@ -80,11 +80,11 @@ class SignInRemoteDatasourceImplTest {
     @Test
     fun `비밀번호를 잘못 입력하면 해당 예외가 발생한다`() = runTest {
         // given
-        val signInInfoEntity = SignInInfoEntity(id = "appdev", password = "WrongPassword")
+        val signInRequestEntity = SignInRequestEntity(id = "appdev", password = "WrongPassword")
         val response = MockResponse().setResponseCode(400).setBody(File("src/test/resources/sign_in_password_error.json").readText())
         mockWebServer.enqueue(response)
         // when
-        val actual = signInRemoteDatasource.signIn(signInInfo = signInInfoEntity.toDomain())
+        val actual = signInRemoteDatasource.signIn(signInInfo = signInRequestEntity.toDomain())
         // then
         assertThat(actual.isFailure).isTrue()
         actual.onFailure { assertThat(it).isInstanceOf(IllegalPasswordException::class.java) }

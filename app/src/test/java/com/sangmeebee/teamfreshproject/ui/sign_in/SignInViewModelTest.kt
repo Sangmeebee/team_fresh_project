@@ -3,7 +3,7 @@ package com.sangmeebee.teamfreshproject.ui.sign_in
 import com.google.common.truth.Truth.assertThat
 import com.sangmeebee.teamfreshproject.domain.usecase.SignInUsecase
 import com.sangmeebee.teamfreshproject.domain.util.IllegalIdException
-import com.sangmeebee.teamfreshproject.model.SignInInfoModel
+import com.sangmeebee.teamfreshproject.model.SignInRequestModel
 import com.sangmeebee.teamfreshproject.model.mapper.toDomain
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -30,10 +30,10 @@ class SignInViewModelTest {
     @Test
     fun `로그인에 성공하면 UIState의 로그인 상태가 성공된 상태로 업데이트 된다`() = runTest {
         // given
-        val signInInfoModel = SignInInfoModel(id = "appdev", password = "Timf1234")
-        coEvery { signInUsecase(signInInfoModel.toDomain()) } returns Result.success(mockk())
+        val signInRequestModel = SignInRequestModel(id = "appdev", password = "Timf1234")
+        coEvery { signInUsecase(signInRequestModel.toDomain()) } returns Result.success(mockk())
         // when
-        signInViewModel.signIn(signInInfoModel)
+        signInViewModel.signIn(signInRequestModel)
         advanceUntilIdle()
         // then
         val actual = signInViewModel.uiState.value
@@ -43,10 +43,10 @@ class SignInViewModelTest {
     @Test
     fun `로그인에 실패하면 UIState의 오류 상태가 업데이트 된다`() = runTest {
         // given
-        val signInInfoModel = SignInInfoModel(id = "WrongId", password = "Timf1234")
-        coEvery { signInUsecase(signInInfoModel.toDomain()) } returns Result.failure(IllegalIdException())
+        val signInRequestModel = SignInRequestModel(id = "WrongId", password = "Timf1234")
+        coEvery { signInUsecase(signInRequestModel.toDomain()) } returns Result.failure(IllegalIdException())
         // when
-        signInViewModel.signIn(signInInfoModel)
+        signInViewModel.signIn(signInRequestModel)
         advanceUntilIdle()
         // then
         val actual = signInViewModel.uiState.value

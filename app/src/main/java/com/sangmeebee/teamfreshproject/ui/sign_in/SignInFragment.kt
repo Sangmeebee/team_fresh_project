@@ -11,7 +11,7 @@ import com.sangmeebee.teamfreshproject.databinding.FragmentSignInBinding
 import com.sangmeebee.teamfreshproject.domain.util.HttpConnectionException
 import com.sangmeebee.teamfreshproject.domain.util.IllegalIdException
 import com.sangmeebee.teamfreshproject.domain.util.IllegalPasswordException
-import com.sangmeebee.teamfreshproject.model.SignInInfoModel
+import com.sangmeebee.teamfreshproject.model.SignInRequestModel
 import com.sangmeebee.teamfreshproject.ui.base.BaseFragment
 import com.sangmeebee.teamfreshproject.util.repeatOnStarted
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,11 +43,11 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
                 showToast(resources.getString(R.string.sign_in_password_empty))
                 return@setOnClickListener
             }
-            val signInInfoModel = SignInInfoModel(
+            val signInRequestModel = SignInRequestModel(
                 id = id,
                 password = password
             )
-            signInViewModel.signIn(signInInfoModel)
+            signInViewModel.signIn(signInRequestModel)
         }
 
         binding.tvFindId.setOnClickListener {

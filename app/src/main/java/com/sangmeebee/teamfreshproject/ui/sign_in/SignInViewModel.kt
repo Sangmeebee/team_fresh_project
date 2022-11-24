@@ -3,7 +3,7 @@ package com.sangmeebee.teamfreshproject.ui.sign_in
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sangmeebee.teamfreshproject.domain.usecase.SignInUsecase
-import com.sangmeebee.teamfreshproject.model.SignInInfoModel
+import com.sangmeebee.teamfreshproject.model.SignInRequestModel
 import com.sangmeebee.teamfreshproject.model.SignInUiState
 import com.sangmeebee.teamfreshproject.model.mapper.toDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,9 +21,9 @@ class SignInViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(SignInUiState())
     val uiState = _uiState.asStateFlow()
 
-    fun signIn(signInInfo: SignInInfoModel) = viewModelScope.launch {
+    fun signIn(signInRequest: SignInRequestModel) = viewModelScope.launch {
         _uiState.update { it.copy(isLoading = true) }
-        signInUsecase(signInInfo.toDomain())
+        signInUsecase(signInRequest.toDomain())
             .onSuccess { _uiState.update { it.copy(isSignIn = true) } }
             .onFailure { throwable -> fetchError(throwable) }
         _uiState.update { it.copy(isLoading = false) }

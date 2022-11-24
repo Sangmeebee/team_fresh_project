@@ -2,34 +2,54 @@ package com.sangmeebee.teamfreshproject.ui.community
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
+import com.google.android.material.tabs.TabLayoutMediator
+import com.sangmeebee.teamfreshproject.R
 import com.sangmeebee.teamfreshproject.databinding.FragmentCommunityBinding
 import com.sangmeebee.teamfreshproject.ui.base.BaseFragment
 import com.sangmeebee.teamfreshproject.ui.community.adapter.CommunityAdapter
-import com.sangmeebee.teamfreshproject.util.repeatOnStarted
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChanged
 
 @AndroidEntryPoint
 class CommunityFragment : BaseFragment<FragmentCommunityBinding>(FragmentCommunityBinding::inflate) {
 
-    private val communityViewModel by viewModels<CommunityViewModel>()
-    private val communityAdapter = CommunityAdapter()
+    private val communityAdapter by lazy { CommunityAdapter(this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setRecyclerView()
-        observeBoards()
+        setToolbar()
+        setViewPager()
+        setTabLayout()
     }
 
-    private fun setRecyclerView() {
-        binding.rvBoard.adapter = communityAdapter
-    }
-
-    private fun observeBoards() = repeatOnStarted {
-        communityViewModel.boards.distinctUntilChanged().collectLatest { boards ->
-            communityAdapter.submitData(boards)
+    private fun setToolbar() {
+        binding.toolbar.apply {
+            setNavigationOnClickListener {
+                showToast(resources.getString(R.string.community_noti))
+            }
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.profile -> {
+                        showToast(resources.getString(R.string.community_profile))
+                        return@setOnMenuItemClickListener true
+                    }
+                }
+                false
+            }
         }
+    }
+
+    private fun setTabLayout() {
+        val tabSubjects = listOf(
+            resources.getString(R.string.community_tab_1),
+            resources.getString(R.string.community_tab_2),
+            resources.getString(R.string.community_tab_3)
+        )
+        TabLayoutMediator(binding.tab, binding.viewPager) { tab, position ->
+            tab.text = tabSubjects[position]
+        }.attach()
+    }
+
+    private fun setViewPager() {
+        binding.viewPager.adapter = communityAdapter
     }
 }

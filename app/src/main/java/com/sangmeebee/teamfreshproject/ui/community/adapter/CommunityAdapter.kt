@@ -1,39 +1,27 @@
 package com.sangmeebee.teamfreshproject.ui.community.adapter
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.sangmeebee.teamfreshproject.databinding.ItemCommunityBinding
-import com.sangmeebee.teamfreshproject.model.BoardModel
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.sangmeebee.teamfreshproject.ui.community.CommunityContentFragment
+import com.sangmeebee.teamfreshproject.ui.community.CommunityContentFragment.Companion.KEY_BOARD_SUBJECT
 
-class CommunityAdapter : PagingDataAdapter<BoardModel, CommunityAdapter.CommunityViewHolder>(BoardDiffCallback()) {
+class CommunityAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+    override fun getItemCount(): Int = ITEM_COUNT
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommunityViewHolder {
-        val binding = ItemCommunityBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CommunityViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: CommunityViewHolder, position: Int) =
-        holder.bind(getItem(position)!!)
-
-    class CommunityViewHolder(private val binding: ItemCommunityBinding) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(board: BoardModel) {
-            binding.board = board
+    override fun createFragment(position: Int): Fragment {
+        val fragment = CommunityContentFragment()
+        val tabSubjects = listOf(SUBJECT_1, SUBJECT_2, SUBJECT_3)
+        fragment.arguments = Bundle().apply {
+            putString(KEY_BOARD_SUBJECT, tabSubjects[position])
         }
+        return fragment
     }
 
-    class BoardDiffCallback : DiffUtil.ItemCallback<BoardModel>() {
-        override fun areItemsTheSame(
-            oldItem: BoardModel,
-            newItem: BoardModel,
-        ): Boolean = oldItem.id == newItem.id
-
-        override fun areContentsTheSame(
-            oldItem: BoardModel,
-            newItem: BoardModel,
-        ): Boolean = oldItem == newItem
+    companion object {
+        private const val ITEM_COUNT = 3
+        private const val SUBJECT_1 = "자유게시판"
+        private const val SUBJECT_2 = "한줄평"
+        private const val SUBJECT_3 = "영차TV"
     }
 }

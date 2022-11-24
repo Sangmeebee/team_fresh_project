@@ -1,5 +1,6 @@
 package com.sangmeebee.teamfreshproject.ui.community
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -10,24 +11,27 @@ import com.sangmeebee.teamfreshproject.model.BoardModel
 import com.sangmeebee.teamfreshproject.model.BoardRequestModel
 import com.sangmeebee.teamfreshproject.model.mapper.toDomain
 import com.sangmeebee.teamfreshproject.model.mapper.toPresentation
+import com.sangmeebee.teamfreshproject.ui.community.CommunityContentFragment.Companion.DUMMY_CONTENT
+import com.sangmeebee.teamfreshproject.ui.community.CommunityContentFragment.Companion.KEY_BOARD_SUBJECT
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
-class CommunityViewModel @Inject constructor(
+class CommunityContentViewModel @Inject constructor(
     private val getBoardUsecase: GetBoardUsecase,
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
-    val subject = MutableSharedFlow<BoardRequestModel>()
+    private val request: Flow<BoardRequestModel> =
+        savedStateHandle.getStateFlow(KEY_BOARD_SUBJECT, "").map { subject -> BoardRequestModel(content = DUMMY_CONTENT, subject = subject) }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val boards: Flow<PagingData<BoardModel>> =
-        subject.flatMapLatest { boardRequest ->
+        request.flatMapLatest { boardRequest ->
             getBoardUsecase(boardRequest.toDomain()).map { pagingData ->
                 pagingData.map { board -> board.toPresentation() }
             }

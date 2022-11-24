@@ -1,6 +1,8 @@
 package com.sangmeebee.teamfreshproject.data.di
 
+import com.sangmeebee.teamfreshproject.data.repository.BoardRepositoryImpl
 import com.sangmeebee.teamfreshproject.data.repository.SignInRepositoryImpl
+import com.sangmeebee.teamfreshproject.domain.repository.BoardRepository
 import com.sangmeebee.teamfreshproject.domain.repository.SignInRepository
 import dagger.Binds
 import dagger.Module
@@ -15,4 +17,8 @@ internal abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindSignInRepository(impl: SignInRepositoryImpl): SignInRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindBoardRepository(impl: BoardRepositoryImpl): BoardRepository
 }

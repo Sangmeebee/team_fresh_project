@@ -1,5 +1,6 @@
 package com.sangmeebee.teamfreshproject.data.di
 
+import com.sangmeebee.teamfreshproject.data.service.BoardAPI
 import com.sangmeebee.teamfreshproject.data.service.SignInAPI
 import dagger.Module
 import dagger.Provides
@@ -16,4 +17,9 @@ internal object APIModule {
     @Provides
     internal fun provideSignInAPI(retrofit: Retrofit): SignInAPI =
         retrofit.create(SignInAPI::class.java)
+
+    @Singleton
+    @Provides
+    internal fun provideBoardAPI(retrofit: Retrofit): BoardAPI =
+        retrofit.create(BoardAPI::class.java)
 }

@@ -1,5 +1,7 @@
 package com.sangmeebee.teamfreshproject.data.di
 
+import com.sangmeebee.teamfreshproject.data.datasource.BoardRemoteDatasource
+import com.sangmeebee.teamfreshproject.data.datasource.BoardRemoteDatasourceImpl
 import com.sangmeebee.teamfreshproject.data.datasource.SignInRemoteDatasource
 import com.sangmeebee.teamfreshproject.data.datasource.SignInRemoteDatasourceImpl
 import dagger.Binds
@@ -15,4 +17,8 @@ internal abstract class DatasourceModule {
     @Singleton
     @Binds
     abstract fun bindSignInRemoteDatasource(impl: SignInRemoteDatasourceImpl): SignInRemoteDatasource
+
+    @Singleton
+    @Binds
+    abstract fun bindBoardRemoteDatasource(impl: BoardRemoteDatasourceImpl): BoardRemoteDatasource
 }

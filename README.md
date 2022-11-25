@@ -10,22 +10,22 @@
   - **게시글의 내용을 보여주는 어댑터를 구현**
   - 무한스크롤 구현은 **20개 단위**로 RecyclerView을 이용
 
-## 구현 계획
-1. android clean architecture에 따라 모듈 분리[]
-2. 각 모듈 gradle 세팅[]
+## 구현 계획 (기능: 100%, Unit Test Coverage: 100%)
+1. android clean architecture에 따라 모듈 분리[O]  
+2. 각 모듈 gradle 세팅[O]  
 3. 로그인 구현  
-   3-1. 로그인 data layer test code 작성, data layer 구현[]  
-   3-2. 로그인 domain layer test code 작성, domain layer 구현[]  
-   3-3. 로그인 presentation layer viewmodel test code 작성, viewmodel 구현[]  
-   3-4. 로그인 ui 구현[]
+   3-1. 로그인 data layer test code 작성, data layer 구현[O]  
+   3-2. 로그인 domain layer test code 작성, domain layer 구현[O]  
+   3-3. 로그인 presentation layer viewmodel test code 작성, viewmodel 구현[O]  
+   3-4. 로그인 ui 구현[O]
 4. 게시판 구현  
-   4-1. 게시판 data layer test code 작성, data layer 구현[]  
-   4-2. 게시판 domain layer test code 작성, domain layer 구현[]  
-   4-3. 게시판 presentation layer viewmodel test code 작성, viewmodel 구현[]  
-   4-4. 게시판 ui 구현[]
+   4-1. 게시판 data layer test code 작성, data layer 구현[O]  
+   4-2. 게시판 domain layer test code 작성, domain layer 구현[O]  
+   4-3. 게시판 presentation layer viewmodel test code 작성, viewmodel 구현[O]  
+   4-4. 게시판 ui 구현[O]  
 
 ## 🏗 Project Structure
-![teamfresh_architecture](https://user-images.githubusercontent.com/48168117/203066088-f818786e-a702-41ae-9689-0a6b12d0c05d.png)
+![teamfresh_architecture](https://user-images.githubusercontent.com/48168117/203956629-c58efdd4-3a8b-43d5-b066-df10f8b3eb24.png)
 
 ## 📖 Tech Skill
 #### Architecture
@@ -34,19 +34,41 @@
 #### UI
 - AppCompact
 - RecyclerView
+- ViewPager2
 - Glide
 #### Network
-- Retrofit
+- Retrofit2
 - Okhttp
 #### DI
 - Hilt
+#### Unit Test
+- Junit4
+- Truth
+- Coroutine Test
+- Mockk
+- Mock Webserver
 #### ETC
 - Coroutine
 - Gson
 - Room
 - Navigation Component
-- Paging
+- Paging3
+
+## 결과
+
+https://user-images.githubusercontent.com/48168117/203968105-85e8dc68-ebdb-4748-a8d1-73b8be32381e.mp4  
+
+https://user-images.githubusercontent.com/48168117/203968182-300f08a5-157b-4898-bea2-75e596219c01.mp4  
 
 ## Developer
 [@Sangmeebee](https://github.com/Sangmeebee)
-> [11월 21일] 개발 시작
+> [11월 21일] 개발 시작  
+> [11월 25일] 개발 종료
+
+
+
+
+
+
+
+

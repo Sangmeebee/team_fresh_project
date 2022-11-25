@@ -1,6 +1,7 @@
 package com.sangmeebee.teamfreshproject.domain.model
 
 data class BoardRequest(
+    val pageSize: Int,
     val content: String,
     val subject: String? = null,
     val type: String? = null,

@@ -44,7 +44,7 @@ class BoardAPITest {
         val response = MockResponse().setResponseCode(200).setBody(File("src/test/resources/board_200.json").readText())
         mockWebServer.enqueue(response)
         // when
-        val actual = boardAPI.getBoards(BoardRequestEntity(length = 20, SearchBoardRequestEntity(content = ""), start = 0))
+        val actual = boardAPI.getBoards(BoardRequestEntity(pageSize = 20, SearchBoardRequestEntity(content = ""), start = 0))
         // then
         val expected = BoardResponseEntity(
             success = true,

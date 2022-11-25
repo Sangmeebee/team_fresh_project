@@ -11,6 +11,7 @@ internal fun SignInRequestModel.toDomain(): SignInRequest = SignInRequest(
 )
 
 internal fun BoardRequestModel.toDomain(): BoardRequest = BoardRequest(
+    pageSize = pageSize,
     content = content,
     subject = subject,
     type = type,

@@ -4,7 +4,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.sangmeebee.teamfreshproject.data.datasource.BoardPagingSource.Companion.PAGE_DISPLAY_SIZE
 import com.sangmeebee.teamfreshproject.data.model.BoardInfoResponseEntity
 import com.sangmeebee.teamfreshproject.data.model.mapper.toData
 import com.sangmeebee.teamfreshproject.data.service.BoardAPI
@@ -19,7 +18,7 @@ internal class BoardRemoteDatasourceImpl @Inject constructor(
 ) : BoardRemoteDatasource {
     override fun getBoards(boardRequest: BoardRequest): Flow<PagingData<Board>> = Pager(
         config = PagingConfig(
-            pageSize = PAGE_DISPLAY_SIZE,
+            pageSize = boardRequest.pageSize,
             enablePlaceholders = false
         ),
         pagingSourceFactory = { BoardPagingSource(boardAPI, boardRequest.toData()) }

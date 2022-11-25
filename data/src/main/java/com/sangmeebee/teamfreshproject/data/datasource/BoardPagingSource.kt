@@ -21,8 +21,8 @@ internal class BoardPagingSource(
             val response = boardAPI.getBoards(newRequest)
             return LoadResult.Page(
                 data = response.data,
-                prevKey = if (start == STARTING_PAGE_INDEX) null else start - PAGE_DISPLAY_SIZE, // Only paging forward.
-                nextKey = if (response.totalCount < (start + PAGE_DISPLAY_SIZE).toLong()) null else start + PAGE_DISPLAY_SIZE
+                prevKey = if (start == STARTING_PAGE_INDEX) null else start - boardRequestEntity.pageSize, // Only paging forward.
+                nextKey = if (response.totalCount < (start + boardRequestEntity.pageSize).toLong()) null else start + boardRequestEntity.pageSize
             )
         } catch (e: IOException) {
             // IOException for network failures.
@@ -36,13 +36,12 @@ internal class BoardPagingSource(
     override fun getRefreshKey(state: PagingState<Int, BoardInfoResponseEntity>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
-            anchorPage?.prevKey?.plus(PAGE_DISPLAY_SIZE)
-                ?: anchorPage?.nextKey?.minus(PAGE_DISPLAY_SIZE)
+            anchorPage?.prevKey?.plus(boardRequestEntity.pageSize)
+                ?: anchorPage?.nextKey?.minus(boardRequestEntity.pageSize)
         }
     }
 
     companion object {
         const val STARTING_PAGE_INDEX = 0
-        const val PAGE_DISPLAY_SIZE = 20
     }
 }

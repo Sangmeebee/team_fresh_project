@@ -12,6 +12,7 @@ internal fun SignInRequest.toData(): SignInRequestEntity = SignInRequestEntity(
 )
 
 internal fun BoardRequest.toData(): BoardRequestEntity = BoardRequestEntity(
+    pageSize = pageSize,
     searchBoard = SearchBoardRequestEntity(
         content = content,
         subject = subject,
